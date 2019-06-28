@@ -37,4 +37,8 @@ function _concatenateMaps(){
     return json_encode($concatenatedArray);
 }
 
+function _sha256Hash($variable){
+    return hash('sha256', $variable);
+}
+
 ?>
