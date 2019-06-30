@@ -41,4 +41,5 @@ function _sha256Hash($variable){
     return hash('sha256', $variable);
 }
 
+
 ?>
