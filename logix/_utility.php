@@ -10,7 +10,7 @@ function _genericApiToMap($url){
 function _webQueryToResultMap ($url){
     $api_call = file_get_contents($url);
     $map = json_decode($api_call, true);
-    $output = $map["response"]["result"];
+    $output = $map["response"];
     return $output;
 }
 
