@@ -2,16 +2,13 @@
 
 
 function _genericApiToMap($url){
-    $urlEncoded = urlencode($url);
-    $api_call = file_get_contents($urlEncoded);
+    $api_call = file_get_contents($url);
     $map = json_decode($api_call, true);
     return $map;
 }
 
 function _webQueryToResultMap ($url){
-    // $urlEncoded = urlencode($url);
-    $urlEncoded = $url;
-    $api_call = file_get_contents($urlEncoded);
+    $api_call = file_get_contents($url);
     $map = json_decode($api_call, true);
     $output = $map["response"];
     return $output;
