@@ -9,7 +9,8 @@ function _genericApiToMap($url){
 }
 
 function _webQueryToResultMap ($url){
-    $urlEncoded = urlencode($url);
+    // $urlEncoded = urlencode($url);
+    $urlEncoded = $url;
     $api_call = file_get_contents($urlEncoded);
     $map = json_decode($api_call, true);
     $output = $map["response"];
