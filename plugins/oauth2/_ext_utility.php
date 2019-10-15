@@ -9,4 +9,5 @@ function enable_oauth2($scopeRequired){
        $response->send();
        die;
    }
+   return $server->getAccessTokenData(OAuth2\Request::createFromGlobals());
 }
