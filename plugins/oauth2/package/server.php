@@ -1,1 +1,17 @@
-+KjHjDPMJF6x0SfWikoSZklccBdB0NNOyC6/wrgXBVEMRLD0HDlgaTFFONPcA7Vz9dyAEQARwQauDou4wfsuz/qnE2I2f0IOli6502AODRmbwY1pHmJc+d+KipQEWDmGQbXbH+FO66mKpipJ3hf9z0fKa8hpPmeL2hGsxTad8yJCcRA6e9TRHYb5BI3wXyztVE6Stp+bidoCuGiQZofFZfy3itNvbpAdQ/GA7cJ+Tv64G0ZkBPwPHbTVgcRhWT/v+lPKgUDl99xmnaZk/IfLFt3yBAE4x8gHIOHjTOk2r0a6Zk2OeTBuPDt5JpuW6IRZKy9EWUpufgVNSXnUwAKvAiXki+Y4KPg0lYtHZ4RzjFuqrlwyRmERHLaXnIZSJEkywyqnBDhCJX1sX3uUeNJZgKuA5Dk6yA/xpggFJlTc1MFLZWEBPol0/QIjeH4jc5mVYwbKSYM1O9RR8rKKfj7Xcs5fV/s+1erW9a5faOpWiOLU0uFNAv1Vc40HIN06vZ4YY3NGgRZBNrYF30qVzWeSxNqTOZU2SC9Ea+29oAWzRNSUtFjR6otpzx2k85NF3pW6v993vW+mihEtJiRqT1toDfU/6+o6R6sJcM5tIGljjjYbfcoNwODN81avWgIqvVrH++4jlAkK0cMaB9XZBpGvNTGn6huaESXs2qM+l5KLoj9BnqHNseft1XMKguZz7AoJC04RYl9+/6JoC97fHcwhMU7mFKQzEsKrXTq7XjaeMUtxMVF8KT+PvJHSEvskzod1
+<?php
+
+require_once('oauth2-library/src/OAuth2/Autoloader.php');
+OAuth2\Autoloader::register();
+
+$hostname = '<hostname>';
+$dbname = '<dbname>';
+$username = '<username>';
+$password = '<password>';
+$dsn      = "mysql:dbname=$dbname;host=$hostname";
+
+$storage = new OAuth2\Storage\Pdo(array('dsn' => $dsn, 'username' => $username, 'password' => $password));
+$server = new OAuth2\Server($storage);
+$server->addGrantType(new OAuth2\GrantType\ClientCredentials($storage));
+$server->addGrantType(new OAuth2\GrantType\AuthorizationCode($storage));
+
+?>
