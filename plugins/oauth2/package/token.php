@@ -1,1 +1,4 @@
-YVkGB4Yj4TwUEK5XBcPSUhKX1V2xAWjithonbx4Q5EwzvWjjWc2CTqLSHFSkAE1Nwv+JDS08aRLoRyE7MdRg6hise8uJIrvvPgP/kwT3jfAl2m67yKVT6s7AUdE00tSmQaxC77ZyWayexrPwz34CeSVGGT4rlCsTM3MblA3iBIAhybxBcvulPswTUOkJL6Ia
+<?php
+    require_once __DIR__.'/server.php';
+    $server->handleTokenRequest(OAuth2\Request::createFromGlobals())->send();
+?>
