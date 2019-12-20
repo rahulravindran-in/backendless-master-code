@@ -60,6 +60,59 @@ function _concatenateMaps(){
     return json_encode($concatenatedArray);
 }
 
+### Transaction Control --Starts
+
+function _bQuery2Request($api_key, $query_name, $transaction_secret ,$post_fields){
+    return json_decode(_postRequest("http://backendless.io:9638/v1/query/$api_key/$query_name/$transaction_secret", $post_fields),true);
+}
+
+function _commitRequest($transaction_secret){
+    return json_decode(_postRequest("http://backendless.io:9638/v1/commit_transaction/$transaction_secret", array()),true);
+}
+
+function _rollbackRequest($transaction_secret){
+    return json_decode(_postRequest("http://backendless.io:9638/v1/rollback_transaction/$transaction_secret", array()),true);
+}
+
+function _closeConnectionRequest($transaction_secret){
+    return json_decode(_postRequest("http://backendless.io:9638/v1/close_connection/$transaction_secret", array()),true);
+}
+
+function _postRequest($url, $post_fields){
+    $curl = curl_init();
+
+    curl_setopt_array($curl, array(
+        CURLOPT_PORT => "9638",
+        CURLOPT_URL => $url,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => "",
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 30,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => "POST",
+        CURLOPT_POSTFIELDS => json_encode($post_fields),
+        CURLOPT_HTTPHEADER => array(
+            "Accept: */*",
+            "Accept-Encoding: gzip, deflate",
+            "Cache-Control: no-cache",
+            "Connection: keep-alive",
+            "Content-Type: application/json",
+            "cache-control: no-cache"
+        ),
+    ));
+
+    $response = curl_exec($curl);
+    $err = curl_error($curl);
+    curl_close($curl);
+
+    if ($err) {
+        return "Unexpected Backendless Error. Please Try Again.";
+    } else {
+        return $response;
+    }
+    
+### Transaction Control --Ends
+
 ### Pipify Code --Starts
 # $inputPipeAndFilterObject, $command, $args ...
 function _pipify(){
